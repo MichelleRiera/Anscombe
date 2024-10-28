@@ -1,0 +1,72 @@
+---
+title: "DataSaurus "
+author: "Michelle Parraga"
+output: html_document
+---
+
+
+Se utiliza varios paquetes del tidyverse para cargar, manipular y resumir datos del conjunto datasaurus_dozen. Primero, carga las bibliotecas: tidyverse (un conjunto de herramientas para análisis y visualización de datos), conflicted (para resolver conflictos de funciones entre bibliotecas), datasauRus (que proporciona el dataset datasaurus_dozen), dplyr (para manipulación de datos) y ggplot2 (para visualización). El código filtra y agrupa el conjunto datasaurus_dozen por la columna dataset usando group_by(dataset) para calcular estadísticas descriptivas con summarise(), como la media de x (mean_x), la media de y (mean_y), la desviación estándar de x (std_dev_x), la desviación estándar de y (std_dev_y), y la correlación entre x e y (corr_x_y). Esto permite comparar las características estadísticas de cada grupo en datasaurus_dozen y demostrar que, aunque las estadísticas descriptivas sean iguales, las distribuciones gráficas pueden diferir significativamente, subrayando la importancia de visualizar los datos para un análisis completo.
+
+```{r}
+library(tidyverse)
+library(conflicted)
+library(datasauRus)
+library(dplyr)
+library("ggplot2")
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarise(
+    mean_x=mean(x),
+    mean_y=mean(y),
+    std_dev_x=sd(x),
+    std_dev_y=sd(y),
+    corr_x_y=cor(x,y)
+  )
+
+
+```
+
+
+La biblioteca ggplot2 para crear una visualización de múltiples conjuntos de datos en el dataset datasaurus_dozen. Primero, se carga la biblioteca ggplot2, que es ideal para crear gráficos personalizados en R. Luego, se utiliza ggplot() para inicializar el gráfico, especificando las variables x e y en los ejes y asignando colores a los puntos según la columna dataset. La función geom_point() se añade para graficar los puntos de dispersión. Para simplificar el aspecto del gráfico, se aplica theme_void(), eliminando los elementos visuales no esenciales, y se usa theme(legend.position = "none") para ocultar la leyenda. Por último, facet_wrap(~dataset, ncol = 3) divide el gráfico en múltiples paneles, uno para cada dataset, y los organiza en una cuadrícula de 3 columnas, permitiendo visualizar cómo se distribuyen los puntos en cada dataset de manera comparativa.
+
+
+```{r}
+library("ggplot2")
+ggplot(datasaurus_dozen, aes(x = x, y = y, colour = dataset))+
+  geom_point() +
+  theme_void() +
+  theme(legend.position = "none")+
+  facet_wrap(~dataset, ncol = 3)
+```
+Se filtra el conjunto de datos datasaurus_dozen para seleccionar únicamente las observaciones del dataset "h_lines" y almacena este subconjunto en un nuevo DataFrame llamado dfgrupo. Utiliza el operador pipe (%>%) de dplyr para encadenar funciones de manera fluida y la función filter() para seleccionar solo las filas donde la columna "dataset" es igual a "h_lines". El resultado se guarda en dfgrupo, que contiene exclusivamente las observaciones de "h_lines". Finalmente, se imprime el contenido de dfgrupo para mostrar las observaciones filtradas. Este código permite enfocar el análisis en un subconjunto específico de datos dentro de datasaurus_dozen.
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+dfgrupo <- datasaurus_dozen %>%
+  dplyr::filter(dataset == "h_lines")
+
+dfgrupo
+
+
+```
+Las bibliotecas ggplot2 y dplyr para filtrar un dataset específico del conjunto datasaurus_dozen y graficarlo con una regresión lineal. Primero, se cargan estas bibliotecas: ggplot2 para la visualización de datos y dplyr para la manipulación de datos. Luego, se usa conflicts_prefer(dplyr::filter) para asegurar que la función filter() de dplyr tenga prioridad en caso de conflicto con otras bibliotecas. Posteriormente, se filtra el dataset datasaurus_dozen para seleccionar solo las observaciones donde "dataset" es "h_lines". Con ggplot2, se inicializa el gráfico especificando las variables x e y en los ejes, y geom_point() agrega puntos de dispersión coloreados según el dataset. geom_smooth(method = "lm", color = "blue") añade una línea de regresión lineal en azul, y scale_color_manual(values = c("h_lines" = "red")) asegura que los puntos se mantengan en color rojo. Finalmente, theme_minimal() aplica un estilo simple y limpio al gráfico, y labs() añade un título y etiquetas para los ejes, resultando en una visualización clara de la relación entre las variables con su respectiva regresión lineal.
+REGRESION LINEAL
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Usar la preferencia de dplyr::filter()
+conflicts_prefer(dplyr::filter)
+
+# Filtrar solo el dataset "h_lines"
+ggplot(datasaurus_dozen %>% dplyr::filter(dataset == "h_lines"), aes(x = x, y = y)) +
+  geom_point(aes(colour = dataset)) +  # Puntos coloreados según dataset
+  geom_smooth(method = "lm", color = "blue") +  # Línea de regresión lineal
+  scale_color_manual(values = c("h_lines" = "red")) +  # Mantener el color rojo para "h_lines"
+  theme_minimal() +  # Tema simple
+  labs(title = "Regresión Lineal para h_lines", x = "X", y = "Y")  # Etiquetas
+
+```
+

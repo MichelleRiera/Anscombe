@@ -1,0 +1,31 @@
+
+El código carga varias bibliotecas en R para manipulación y visualización de datos, así como para manejar conflictos entre funciones. Primero, se carga tidyverse, un conjunto de paquetes como ggplot2, dplyr, tidyr, y otros, que se utilizan para análisis y visualización de datos de forma consistente. Luego, se carga conflicted, que ayuda a resolver conflictos cuando hay funciones con el mismo nombre en distintos paquetes, permitiendo especificar cuál usar. También se carga datasauRus, que contiene el conjunto de datos Datasaurus Dozen, usado para demostraciones visuales en estadística. Aunque dplyr y ggplot2 ya están incluidos en tidyverse, se cargan explícitamente para asegurar su disponibilidad y enfatizar su uso en el código posterior.
+
+```{r}
+library(tidyverse)
+library(conflicted)
+library(datasauRus)
+library(dplyr)
+library("ggplot2")
+
+```
+
+
+Se utiliza la herramienta ggplot2, una biblioteca potente y popular en R para la visualización de datos, que permite crear gráficos sofisticados y personalizables mediante un enfoque basado en capas. Primero, el código usa conflicts_prefer(dplyr::filter) del paquete conflicted para asegurar que la función filter() de dplyr se utilice en caso de que existan funciones con el mismo nombre en otros paquetes, evitando ambigüedades. Luego, se filtra el conjunto de datos datasaurus_dozen para seleccionar solo las observaciones donde la columna "dataset" es "h_lines", creando un subconjunto de datos que se pasa a ggplot(). Esto establece la base del gráfico con las variables x y y en los ejes. geom_point() agrega puntos coloreados en el gráfico según el dataset, y geom_smooth(method = "lm", color = "blue") añade una línea de regresión lineal en color azul con una banda de confianza. scale_color_manual(values = c("h_lines" = "red")) asegura que los puntos del dataset "h_lines" se mantengan en rojo. theme_minimal() aplica un tema limpio y minimalista, y labs() añade el título "Regresión Lineal para h_lines" y etiquetas para los ejes, mejorando la presentación visual del gráfico.
+
+
+```{r}
+# Usar la preferencia de dplyr::filter()
+conflicts_prefer(dplyr::filter)
+
+# Filtrar solo el dataset "h_lines"
+ggplot(datasaurus_dozen %>% dplyr::filter(dataset == "h_lines"), aes(x = x, y = y)) +
+  geom_point(aes(colour = dataset)) +  # Puntos coloreados según dataset
+  geom_smooth(method = "lm", color = "blue") +  # Línea de regresión lineal
+  scale_color_manual(values = c("h_lines" = "red")) +  # Mantener el color rojo para "h_lines"
+  theme_minimal() +  # Tema simple
+  labs(title = "Regresión Lineal para h_lines", x = "X", y = "Y")  # Etiquetas
+
+```
+
+
