@@ -56,7 +56,7 @@ Estos conjuntos son herramientas educativas y prácticas que refuerzan la necesi
 #### - Directorio: `data`
    Contiene todos los conjuntos de datos utilizados en esta práctica, incluyendo:
    - **Cuarteto de Anscombe** (`df_nscombe.csv`): Archivo con los datos del cuarteto de Anscombe en formato CSV.
-   - **DataSaurus Dozen**: Este conjunto de datos no se descarga como archivo, sino que se importa directamente en 
+   - **DataSaurus Dozen**: (`datasaurus_dozen.csv`):Este conjunto de datos se puede utilizar directamente importado directamente en 
    R utilizando el paquete **`datasauRus`**. El dataset se accede mediante el nombre `datasaurus_dozen` una vez que 
    el paquete se ha cargado. Este conjunto de datos incluye 13 datasets que se utilizan para mostrar cómo, a pesar de
    tener estadísticas similares, las distribuciones pueden ser muy diferentes visualmente. 
@@ -66,6 +66,7 @@ Estos conjuntos son herramientas educativas y prácticas que refuerzan la necesi
    library(datasauRus)
    write.csv(datasaurus_dozen, "datasaurus_dozen.csv", row.names = FALSE)
 ```
+ en el scrip dataset_datasaurus esta el codigo para descargar el dataset datasaurus en csv
 
 #### - Directorio: `anscombe`
    Este directorio contiene el análisis completo del cuarteto de Anscombe, incluyendo el código fuente y los resultados visuales. La estructura es la siguiente:
