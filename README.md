@@ -2,15 +2,43 @@
 
 # Universidad Politécnica Salesiana (UPS)
 
-### Carrera: Computacion 
+### Carrera: Computación 
 ### Periodo: 65
 ### Estudiante: Michelle Parraga 
 ---
 
-## Cuarteto de Anscombe
+## Cuarteto de Anscombe y DataSaurus Dozen
 
-El cuarteto de Anscombe es un conjunto de cuatro conjuntos de datos creados por el estadístico Francis Anscombe en 1973. 
-Estos conjuntos de datos se diseñaron para demostrar la importancia de visualizar datos estadísticos antes de interpretarlos, ya que, aunque todos comparten las mismas estadísticas descriptivas (media, varianza, correlación y ecuación de regresión lineal), sus distribuciones son visualmente muy diferentes. Este fenómeno subraya cómo el análisis visual puede descubrir patrones, tendencias y anomalías que las estadísticas descriptivas simples pueden ocultar.
+### Cuarteto de Anscombe
+
+El cuarteto de Anscombe es un conjunto de cuatro datasets creados por el estadístico Francis Anscombe en 1973. Estos cuatro conjuntos de datos tienen propiedades estadísticas idénticas o muy similares:
+- La **media** y **varianza** de las variables `x` e `y`.
+- La **correlación** entre `x` e `y`.
+- La **ecuación de la regresión lineal**.
+
+A pesar de tener estas características en común, las distribuciones de los datos son completamente diferentes cuando se visualizan en gráficos de dispersión. Esto muestra que las estadísticas descriptivas, aunque útiles, no son suficientes para comprender completamente la estructura de los datos. La visualización es crucial para identificar patrones, tendencias, y valores atípicos que podrían pasar desapercibidos con solo números.
+
+### DataSaurus Dozen
+
+El **DataSaurus Dozen** es un conjunto más reciente que amplía la idea del cuarteto de Anscombe, creado por Alberto Cairo y promovido a través del paquete `datasauRus` en R. Este conjunto incluye **13 datasets**, todos con las mismas estadísticas descriptivas básicas (media, desviación estándar y correlación), pero que son visualmente muy distintos cuando se grafican.
+
+Estos datasets incluyen patrones como:
+- Formas geométricas (círculos, estrellas).
+- Figuras complejas como un dinosaurio.
+- Distribuciones lineales, curvas, y con valores atípicos.
+
+Este conjunto enfatiza la idea de que, aunque los datos compartan las mismas estadísticas descriptivas, sus estructuras visuales pueden variar drásticamente. Es una demostración moderna y creativa de cómo las visualizaciones son fundamentales para interpretar los datos correctamente.
+
+### Comparación y Importancia
+
+| Aspecto                  | Cuarteto de Anscombe                           | DataSaurus Dozen                           |
+|-------------------------|------------------------------------------------|-------------------------------------------|
+| **Número de Datasets**  | 4                                              | 13                                        |
+| **Propiedades**         | Media, varianza, correlación y regresión lineal iguales. | Medias, desviaciones estándar y correlaciones iguales. |
+| **Estructura Visual**   | Diversas, incluyendo lineales y con valores atípicos. | Formas y patrones más complejos (figuras, curvas).     |
+| **Mensaje Principal**   | La visualización es fundamental para interpretar correctamente los datos. | Los datos con las mismas estadísticas descriptivas pueden tener estructuras completamente diferentes. |
+
+Estos conjuntos son herramientas educativas y prácticas que refuerzan la necesidad de integrar la visualización en cualquier análisis estadístico. Las visualizaciones ayudan a identificar patrones y anomalías que no son evidentes con estadísticas descriptivas simples, proporcionando una imagen más completa y precisa de los datos.
 
 ---
 
@@ -37,7 +65,7 @@ Estos conjuntos de datos se diseñaron para demostrar la importancia de visualiz
    ```r
    library(datasauRus)
    write.csv(datasaurus_dozen, "datasaurus_dozen.csv", row.names = FALSE)
-
+```
 
 #### - Directorio: `anscombe`
    Este directorio contiene el análisis completo del cuarteto de Anscombe, incluyendo el código fuente y los resultados visuales. La estructura es la siguiente:
@@ -97,3 +125,8 @@ Puede acceder a los resultados en formato HTML directamente en el repositorio o 
 
 Este repositorio demuestra la importancia del análisis visual de datos a través de ejemplos icónicos como el cuarteto de Anscombe y el `datasaurus_dozen`. Aunque las estadísticas descriptivas pueden ser útiles, las visualizaciones permiten identificar patrones y anomalías que no son evidentes a simple vista, reforzando la idea de que una imagen vale más que mil palabras en el análisis estadístico. Los gráficos ayudan a revelar distribuciones y relaciones que las simples estadísticas no pueden mostrar, subrayando la necesidad de combinar ambos enfoques para un análisis completo y preciso.
 
+## Referencias
+- Anscombe, F. J. (1973). Graphs in Statistical Analysis. American Statistician, 27(1), 17-21.
+- Cairo, A. (2016). The Datasaurus Dozen: Same Stats, Different Graphs. Fuente en línea.
+- Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+- datasauRus package. A Collection of Datasets Illustrating the Importance of Visualizing Data. CRAN Package.
