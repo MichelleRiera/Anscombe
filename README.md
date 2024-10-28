@@ -46,7 +46,7 @@ Estos conjuntos son herramientas educativas y prácticas que refuerzan la necesi
 
 ### 1. **Portada**
    - Universidad: Universidad Politécnica Salesiana (UPS)
-   - Carrera: Computacion
+   - Carrera: Computación
    - Periodo: 65
    - Estudiante: Michelle Parraga
    - Explicación breve: Se incluye una breve explicación del cuarteto de Anscombe y su relevancia en el análisis visual de datos.
